@@ -1,5 +1,5 @@
 [package]
-name = "unsafe_misuse_pinocchio"
+name = "unsafe_storage_reads_pinocchio"
 version = "0.1.0"
 edition = "2021"
 
