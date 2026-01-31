@@ -85,7 +85,8 @@ A PDA collision, incorrect seed derivation, or missing bump verification can all
 
 This creates a subtle but recurring vulnerability pattern: developers rely on PDAs as identity anchors without verifying that the PDA actually represents the intended state. In practice, PDAs should be treated as untrusted inputs that must be re-derived and validated within the program.
 
-Related vulnerabilities: seed_collision, reinitialization
+Related vulnerabilities: [Seed Collision](https://github.com/praise03/Solana-Security-Template/tree/main/seed_collision), [Incorrect Space Allocation](https://github.com/praise03/Solana-Security-Template/tree/main/incorrect_space_allocation)
+
 
 ## Account Lifecycle Misunderstandings and Reinitialization Risks
 
@@ -95,7 +96,8 @@ This leads to account revival vulnerabilities, where programs assume an account 
 
 These issues are particularly common in reward distribution, staking, and escrow-style programs where state transitions must be strictly monotonic.
 
-Related Vulnerabilities: account_reload_vulnerability, missing_account_checks_pinocchio, reinitialization
+Related vulnerabilities: [Account Reload Vulnerability](https://github.com/praise03/Solana-Security-Template/tree/main/account_reload_vulnerability), [Reinitialization](https://github.com/praise03/Solana-Security-Template/tree/main/reinitialization)
+
 
 ## Arithmetic Safety in a Deterministic Execution Model
 
@@ -105,7 +107,8 @@ Because Solana programs are deterministic, an arithmetic error is not merely a c
 
 Arithmetic bugs often appear benign during development because typical inputs do not trigger edge cases. Attackers, however, design inputs specifically to do so.
 
-Related vulnerability: arithmetic_overflow_and_underflow
+Related vulnerability: [Arithmetic Overflow and Underflow](https://github.com/praise03/Solana-Security-Template/tree/main/arithmetic_overflow_and_underflow)
+
 
 ## CPI as a Security Boundary, Not a Convenience Layer
 
@@ -119,7 +122,7 @@ Many vulnerabilities arise from unsafe CPI usage, such as:
 
 CPI-related vulnerabilities are particularly dangerous because they often combine multiple assumptions: account validity, execution ordering, and state freshness.
 
-Related vulnerabilities: runtime-lamport-accounting-DoS-via-missing-cpi-accounts
+Related vulnerability: [Runtime Lamport Accounting DoS via Missing cpi Accounts](http://github.com/praise03/Solana-Security-Template/tree/main/runtime-lamport-accounting-DoS-via-missing-cpi-accounts)
 
 
 ## Stale Data, Replay, and Temporal Assumptions
@@ -130,7 +133,8 @@ This enables replay-style attacks, stale oracle exploits, and front-running scen
 
 Security-conscious programs treat all externally sourced data as potentially stale unless proven otherwise within the same execution context.
 
-Related vulnerabilities: stale_oracle_replay, signature_replay
+
+Related vulnerabilities: [Stale Oracle Replay](https://github.com/praise03/Solana-Security-Template/tree/main/stale_oracle_replay), [Signature Replay](https://github.com/praise03/Solana-Security-Template/tree/main/signature_replay), [Frontrunning](https://github.com/praise03/Solana-Security-Template/tree/main/frontrunning_attack)
 
 ## Pinocchio and the Limits of Low-Level Safety
 
@@ -138,7 +142,7 @@ Pinocchio provides direct, low-level access to account data, including zero-copy
 
 Pinocchio’s design assumes that developers understand low-level details. Its safety guarantees are minimal by design, so secure programs depend on careful reasoning about memory, alignment, and account structure rather than relying on enforced abstractions.
 
-The missing_account_checks_pinocchio and unsafe_storage_reads_pinocchio examples illustrate how failure to validate accounts, misuse of zero-copy or unaligned memory access can cause undefined behavior, data corruption, or unintended state changes. Even small mistakes in account layout interpretation or raw memory operations can produce security-critical bugs.
+The [Missing Account Checks Pinocchio](https://github.com/praise03/Solana-Security-Template/tree/main/missing_account_checks_pinocchio) and [Unsafe Storage reads pinocchio](https://github.com/praise03/Solana-Security-Template/tree/main/unsafe_storage_reads_pinocchio) examples illustrate how failure to validate accounts, misuse of zero-copy or unaligned memory access can cause undefined behavior, data corruption, or unintended state changes. Even small mistakes in account layout interpretation or raw memory operations can produce security-critical bugs.
 
 
 # Conclusion - Consolidating Security Principles from Exploit Studies
