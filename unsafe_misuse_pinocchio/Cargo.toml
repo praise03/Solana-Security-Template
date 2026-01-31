@@ -1,0 +1,10 @@
+[package]
+name = "unsafe_misuse_pinocchio"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pinocchio = "0.8.4"
+pinocchio-log = "0.5.1"
+pinocchio-system = "0.2.3"
+
